@@ -18,7 +18,10 @@ args = parser.parse_args()
 session = ftplib.FTP(args.server, args.user, args.password)
 
 file = open(args.file,'rb')
-session.storbinary('STOR ' + args.destination_root + '/' + args.file, file)
+
+raw = args.destination_root
+dest =  raw[raw.rfind('/'):] if raw.find('/') != -1 else raw
+session.storbinary('STOR ' + dest + '/' + args.file, file)
 file.close()
 
 session.quit()
