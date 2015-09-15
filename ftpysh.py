@@ -20,7 +20,7 @@ session = ftplib.FTP(args.server, args.user, args.password)
 file = open(args.file,'rb')
 
 file_cut = args.file[args.file.rfind('/'):] if args.file.find('/') != -1 else args.file
-session.storbinary('STOR ' + dest + '/' + file_cut, file)
+session.storbinary('STOR ' + args.destination_root + '/' + file_cut, file)
 file.close()
 
 session.quit()
